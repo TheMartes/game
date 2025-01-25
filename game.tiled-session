@@ -1,0 +1,43 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/Users/martes/Downloads/Fantasy Swamp Forest/Free/BG_1.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/martes/Downloads/Fantasy Swamp Forest/Free/BG_2.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/martes/Downloads/Fantasy Swamp Forest/Free/BG_3.tsx": {
+            "scaleInDock": 1
+        },
+        "/Users/martes/Downloads/Fantasy Swamp Forest/Free/Terrain_and_Props.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/level.json": {
+            "scale": 0.33,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 353.03030303030323,
+                "y": -31.818181818181756
+            }
+        }
+    },
+    "last.exportedFilePath": "/Users/martes/Downloads/Fantasy Swamp Forest/Free",
+    "map.height": 23,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "json",
+    "map.width": 40,
+    "openFiles": [
+    ],
+    "project": "game.tiled-project",
+    "recentFiles": [
+        "assets/level.json"
+    ]
+}
