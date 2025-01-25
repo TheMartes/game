@@ -6,19 +6,30 @@ InitMovement :: proc() {
         baseMovement := CurrentPlayer.base_speed*rl.GetFrameTime()
 
         if (rl.IsKeyDown(.A) && !CurrentPlayer.is_attacking) {
-            CurrentPlayer.player_vel.x += -baseMovement
+            if (CurrentPlayer.player_vel.x > 0) {
+                CurrentPlayer.player_vel.x = 0
+            } else if (!(CurrentPlayer.player_vel.x < CurrentPlayer.base_speed * -1)) {
+                CurrentPlayer.player_vel.x += -baseMovement
+            }
             CurrentAnimation = AvailableAnimations.walking
+
             CurrentPlayer.player_flip = true
             CurrentPlayer.is_attacking = false
         } else if (rl.IsKeyDown(.D) && !CurrentPlayer.is_attacking) {
-            CurrentPlayer.player_vel.x += baseMovement
+            if (CurrentPlayer.player_vel.x < 0) {
+                CurrentPlayer.player_vel.x = 0
+            } else if (!(CurrentPlayer.player_vel.x > CurrentPlayer.base_speed)) {
+                CurrentPlayer.player_vel.x += baseMovement
+            }
             CurrentAnimation = AvailableAnimations.walking
+
             CurrentPlayer.player_flip = false
             CurrentPlayer.is_attacking = false
         } else if (rl.IsKeyDown(.F)) {
             CurrentAnimation = AvailableAnimations.attack
             CurrentPlayer.is_attacking = true
         } else {
+            CurrentPlayer.player_vel.x = 0
             if (!CurrentPlayer.is_attacking) {
                 CurrentAnimation = AvailableAnimations.idle
                 CurrentAnimation = AvailableAnimations.idle
