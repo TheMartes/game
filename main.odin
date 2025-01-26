@@ -1,17 +1,29 @@
 package main
 
 import rl "vendor:raylib"
+import "core:fmt"
 import "player"
+import "world"
+
+developer : bool
 
 main :: proc() {
-    rl.InitWindow(1280, 720, "welcome to the game")
+    rl.SetConfigFlags({rl.ConfigFlag.WINDOW_RESIZABLE})
+
+    developer = true
+
+    rl.InitWindow(1920, 1080, "The Mr. Bomberman")
+
     player.InitializePlayer()
 
     // load bg
     bg := rl.LoadTexture("assets/bg.png")
+    platform := rl.LoadTexture("assets/platform.png")
     defer(rl.UnloadTexture(bg))
+    defer(rl.UnloadTexture(platform))
 
-    font := rl.LoadFont("assets/font.ttf")
+    // font := rl.LoadFont("assets/font.ttf")
+    font := rl.LoadFont("assets/mono.ttf")
 
     bgDestCanvas := rl.Rectangle{
         0,
@@ -32,12 +44,23 @@ main :: proc() {
 
         rl.BeginDrawing()
 
-        rl.ClearBackground(rl.RAYWHITE)
+        // Background
         rl.DrawTexturePro(bg, bgSourceCanvas, bgDestCanvas, rl.Vector2{0, 0}, 0, rl.WHITE)
-        rl.DrawTextEx(font, "Level 1", rl.Vector2{200, 200}, 35, 1, rl.GRAY)
 
-        player.InitMovement()
+        // Player specific
         player.HandlePlayerAnimation()
+        player.HandleMovement()
+
+        // Jump platforms
+        world.DrawPlatforms(platform)
+
+        // Developer info
+        if (developer) {
+            rl.DrawFPS(50, 30)
+            rl.DrawTextEx(font, fmt.ctprintf("POS  x:%f y:%f", player.CurrentPlayer.player_pos.x, player.CurrentPlayer.player_pos.y), rl.Vector2{50, 50}, 32, 1, rl.WHITE)
+            rl.DrawTextEx(font, fmt.ctprintf("VEL  x:%f y:%f", player.CurrentPlayer.player_vel.x, player.CurrentPlayer.player_vel.y), rl.Vector2{50, 70}, 32, 1, rl.WHITE)
+            rl.DrawTextEx(font, fmt.ctprintf("MOUSE    x:%f y:%f", rl.GetMousePosition().x, rl.GetMousePosition().y), rl.Vector2{50, 90}, 32, 1, rl.WHITE)
+        }
 
         rl.EndDrawing()
     }

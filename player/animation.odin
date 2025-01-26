@@ -1,6 +1,7 @@
 package player
 
 import rl "vendor:raylib"
+import "core:fmt"
 
 HandlePlayerAnimation :: proc() {
         player_run_width := f32(CurrentAnimation.texture.width)
@@ -15,10 +16,7 @@ HandlePlayerAnimation :: proc() {
             if (CurrentPlayer.anim_current_frame == CurrentAnimation.num_frames) {
                 CurrentPlayer.anim_current_frame = 0
 
-                if (CurrentAnimation.name == "attack") {
-                    CurrentAnimation = AvailableAnimations.idle
-                    CurrentPlayer.is_attacking = false
-                }
+                CurrentAnimation = AvailableAnimations.idle
             }
         }
 
